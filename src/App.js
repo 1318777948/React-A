@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component,Fragment } from 'react'
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import Admain from "./routers/admain/Admain"
+import Login  from "./routers/login/Login"
+export default class App extends Component {
+  handleClick(){
+    console.log(111)
+  }
+  render() {
+    return (
+      <Fragment>
+          <BrowserRouter>
+              <Switch>
+                <Route path="/admain" component={Admain}></Route>
+                <Route path="/" component={Login}></Route>
+              </Switch>
+          </BrowserRouter>
+      </Fragment>
+         
+     
+    )
+  }
 }
-
-export default App;
