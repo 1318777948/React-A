@@ -20,10 +20,11 @@ class Login extends Component {
             // console.log('请求成功',result)
             // const result=response.data      //返回的结果
             if(result.status===0){
-                message.success('登陆成功')
-                this.props.history.replace("/")//进入主界面，不需要回退回去
                 const user=result.data        
                 memoryUtils.user=user           //保存此时的user
+                message.success('登陆成功')
+                this.props.history.replace("/")//进入主界面，不需要回退回去
+                
             }else{
                 message.error(result.msg)
             }
