@@ -1,6 +1,7 @@
 import React, { Component,Fragment} from 'react'
 import "./login.css"
 import {reqLogin} from '../../api/index'
+import memoryUtils from "../../utils/memoryUtils"
 import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 class Login extends Component {
     constructor(){
@@ -15,12 +16,14 @@ class Login extends Component {
         this.props.form.validateFields(async(err, values) => {
           if (!err) {       
             const {username,password}=values
-            const response=await reqLogin(username,password)
-            // console.log('请求成功',response.data)
-            const result=response.data      //返回的结果
+            const result=await reqLogin(username,password)
+            // console.log('请求成功',result)
+            // const result=response.data      //返回的结果
             if(result.status===0){
                 message.success('登陆成功')
                 this.props.history.replace("/")//进入主界面，不需要回退回去
+                const user=result.data        
+                memoryUtils.user=user           //保存此时的user
             }else{
                 message.error(result.msg)
             }

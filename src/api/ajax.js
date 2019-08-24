@@ -13,7 +13,7 @@ export default function ajax(url,data={},type='GET'){
             promise=axios.post(url,data)  //把axios放在promise身上
         }
         promise.then(response=>{            //每次调用axios，都会执行这个
-            resolve(response)
+            resolve(response.data)
             console.log("我是封装的axios：我的请求成功了！我返回的数据是：",response.data)
         }).catch(error=>{
             message.error("我是封装的axios:",'我的请求出错了！'+error.message)
